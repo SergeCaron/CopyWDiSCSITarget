@@ -12,7 +12,7 @@ Even if you can login in the NAS using SSH, the secure file copy (SCP) protocol 
 <details>
 <Summary>Primary objective: transfer the iSCSI target at "wire" speed.</Summary>  
 
-Since the expected use case is a Gigabit interface (as found on My Cloud devices) and a very large file (e.g. hundreds of gigabytes), we can compute a realistic throughput in GB/minutes to evaluate the duration of this operation. Using standard Ethernet frames of 1538 bytes (within a VLAN tag), the maximum payload is 1500 bytes and the number of bits required to transfer 1GB of data is (1*1000^3/1500)*1538*8. Presuming a sustained usage of 95% of the wire, we can transfer 95%*1000^3*60 bits in one minute. This yields a transfer rate of 0,144 GB/minute. This translates to roughly 19 minutes to transfer a 128GB iSCSI target.</details>
+Since the expected use case is a Gigabit interface (as found on My Cloud devices) and a very large file (e.g. hundreds of gigabytes), we can compute a realistic throughput in GB/minutes to evaluate the duration of this operation. Using standard Ethernet frames of 1538 bytes (without a VLAN tag), the maximum payload is 1500 bytes and the number of bits required to transfer 1GB of data is (1\*1000^3/1500)\*1538\*8. Presuming a sustained usage of 95% of the wire, we can transfer 95%\*1000^3\*60 bits in one minute. This yields a transfer rate of 0,144 GB/minute. This translates to roughly 19 minutes to transfer a 128GB iSCSI target.</details>
 
 <details>
 <Summary>Secondary objective: validation.</Summary>
@@ -21,7 +21,7 @@ To confirm that no corruption occured during this transfer (any harware issue on
 &nbsp; 
 
 There are two issues:
-- On the My Book models I have available, the MD5SUM utility is rather CPU intensive as shown below:
+- On the My Book models tested, the MD5SUM utility is rather CPU intensive as shown below:
 ![CPU_Usage](Ressources/CPU_usage_MD5SUM_on_My_Book.jpg)  
 and would impact troughput if done while transfering the file over the network.
 - It is the user's responsability to compare these hashes. </details> 
