@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ##******************************************************************
-## Revision date: 2024.03.21
+## Revision date: 2024.08.18
 ##
 ## Copyright (c) 2022-2024 PC-Évolution enr.
 ## This code is licensed under the GNU General Public License (GPL).
@@ -62,7 +62,7 @@ umount /mnt/$Remote
 rmdir /mnt/$Remote
 
 # Hash the source AFTER the copy
-echo "Hash the destination AFTER the copy ..."
+echo "Hash the source AFTER the copy ..."
 date
 md5sum $iSCSIimages/$Target.img
 date
