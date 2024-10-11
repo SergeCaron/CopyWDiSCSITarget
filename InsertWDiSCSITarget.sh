@@ -22,8 +22,24 @@
 # (typical "ssh -l sshd <My_Book>" where <My_Book> is the host name of the device.
 # 
 
+# Is iSCSI daemon running?
+if [ ! -d "/sys/kernel/config/target/" ]; then
+	echo "Enable iSCSI targets in the WD NAS GUI before attempting an insertion."
+	exit 911
+fi
+
 # Locate the iSCSI targets and enumerate
 iSCSIimages=$(find /mnt -name iscsi_images)
+if [[ -z "$iSCSIimages" ]]; then
+   echo "The expected iSCSI targets directory is not found on this system."
+   exit 911
+fi
+nTargets=$(ls -l $iSCSIimages | wc -l)
+if [ $nTargets -lt 1 ]; then
+	echo "At least one iSCSI target should be defined on this system."
+	echo "Use the WD GUI to create a dummy 1GB iSCSI target that you can remove after the insertion."
+	exit 911
+fi
 echo "iSCSI targets on this volume:"
 ls -1 $iSCSIimages | sed -e s/.img// -e s/^/\ \ /
 echo
