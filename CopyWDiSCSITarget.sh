@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ##******************************************************************
-## Revision date: 2024.08.18
+## Revision date: 2024.10.11
 ##
 ## Copyright (c) 2022-2024 PC-Évolution enr.
 ## This code is licensed under the GNU General Public License (GPL).
